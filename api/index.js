@@ -3,7 +3,7 @@ const express = require('express')
 
 const app = express()
 
-app.get("/", (req, res) => res.send("<style>html { width: 100%; height: 100%; } body { background-color: rgb(43, 43, 43); font-family: sans-serif; }</style><a href=\"https://typhoon-api.vercel.app/api/typhoon\" style=\"color: white\">https://typhoon-api.vercel.app/api/typhoon</a>"));
+app.get("/", (req, res) => res.send("<style>html { width: 100%; height: 100%; } body { background-color: rgb(43, 43, 43); font-family: sans-serif; }</style><a href=\"/api/typhoon\" style=\"color: white\">https://typhoon-api.vercel.app/api/typhoon</a>"));
 
 app.get('/api/typhoon', async (req, res) => {
     let resp = await fetch('https://www.dgpa.gov.tw/typh/daily/nds.html', {
