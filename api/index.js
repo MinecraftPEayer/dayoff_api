@@ -23,8 +23,8 @@ app.get('/api/typhoon', async (req, res) => {
     let data = []
     for (let i = 0; i < CityName.length; i++) {
         data.push({
-            CityName: CityName[i].textContent,
-            Status: Status[i].textContent.replace(/  /g, '\n').slice(0, -1)
+            cityName: CityName[i].textContent,
+            status: Status[i].textContent.replace(/  /g, '\n').slice(0, -1)
         })
     }
 
