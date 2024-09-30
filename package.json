@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "dom-parser": "^1.1.5",
+    "domparser": "^0.1.1",
+    "express": "^4.21.0",
+    "jsdom": "^25.0.1"
+  }
+}
