@@ -3,7 +3,9 @@ const express = require('express')
 
 const app = express()
 
-app.get('/typhoon', async (req, res) => {
+app.get("/", (req, res) => res.send("Express on Vercel"));
+
+app.get('/api/typhoon', async (req, res) => {
     let resp = await fetch('https://www.dgpa.gov.tw/typh/daily/nds.html', {
         headers: {
             'Content-Type': 'text/html; charset=utf-8'
@@ -32,3 +34,5 @@ app.get('/typhoon', async (req, res) => {
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000')
 })
+
+module.exports = app
