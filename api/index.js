@@ -41,7 +41,7 @@ app.get('/api/typhoon', async (req, res) => {
 
     let dom = new jsdom.JSDOM(html)
     let document = dom.window.document
-    
+
     const CityName = document.querySelectorAll('[headers="city_Name"]');
     const Status = document.querySelectorAll('[headers="StopWorkSchool_Info"]');
 
@@ -67,9 +67,11 @@ app.get('/status/:city', async (req, res) => {
 
     let dom = new jsdom.JSDOM(html)
     let document = dom.window.document
-    
+
     const CityName = document.querySelectorAll('[headers="city_Name"]');
     const Status = document.querySelectorAll('[headers="StopWorkSchool_Info"]');
+
+    const header_YMD = document.getElementsByClassName('Header_YMD')
 
     let data = []
     for (let i = 0; i < CityName.length; i++) {
@@ -81,7 +83,15 @@ app.get('/status/:city', async (req, res) => {
 
     let dataReturn = data.filter((data) => data.cityName === code[req.params.city])[0]
 
-    res.send(`<html><head><title>Website Name</title><meta property="og:type" content="website"><meta property="og:url" content=""><meta property="og:title" content="${dataReturn.cityName}"><meta property="og:description" content="${dataReturn.status}\n\n資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html"></head></html>`)
+    // `<html><head><title>Website Name</title><meta property="og:type" content="website"><meta property="og:url" content=""><meta property="og:title" content="${dataReturn.cityName} ${header_YMD.item(0).textContent}"><meta property="og:description" content="${dataReturn.status}\n\n資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html"></head><body></html>`
+    res.json({
+        metadata: {
+            'og:type': 'website',
+            'og:url': '',
+            'og:title': `${dataReturn.cityName} ${header_YMD.item(0).textContent}`,
+            'og:description': `${dataReturn.status}\n\n資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html`
+        }
+    })
 })
 
 app.listen(3000, () => {
