@@ -83,15 +83,7 @@ app.get('/status/:city', async (req, res) => {
 
     let dataReturn = data.filter((data) => data.cityName === code[req.params.city])[0]
 
-    // `<html><head><title>Website Name</title><meta property="og:type" content="website"><meta property="og:url" content=""><meta property="og:title" content="${dataReturn.cityName} ${header_YMD.item(0).textContent}"><meta property="og:description" content="${dataReturn.status}\n\n資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html"></head><body></html>`
-    res.json({
-        metadata: {
-            'og:type': 'website',
-            'og:url': '',
-            'og:title': `${dataReturn.cityName} ${header_YMD.item(0).textContent}`,
-            'og:description': `${dataReturn.status}\n\n資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html`
-        }
-    })
+    res.send(`<html><head><title>Website Name</title><meta property="og:type" content="website"><meta property="og:url" content=""><meta property="og:title" content="${dataReturn.cityName} ${header_YMD.item(0).textContent}"><meta property="og:description" content="${dataReturn.status}\n\n資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html"></head><body><h1>${dataReturn.cityName} ${header_YMD.item(0).textContent}</h1><p>${dataReturn.status.replace(/\n/g, '<br>')}<br><br>資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html</p></body></html>`)
 })
 
 app.listen(3000, () => {
