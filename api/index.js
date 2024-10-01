@@ -83,7 +83,7 @@ app.get('/status/:city', async (req, res) => {
 
     let dataReturn = data.filter((data) => data.cityName === code[req.params.city])[0]
 
-    res.send(`<html><head><title>Website Name</title><meta property="og:type" content="website"><meta property="og:url" content=""><meta property="og:title" content="${dataReturn.cityName} ${header_YMD.item(0).textContent.replace(/\n/g, '')}"><meta property="og:description" content="${dataReturn.status}\n\n資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html"></head><body><h1>${dataReturn.cityName} ${header_YMD.item(0).textContent}</h1><p>${dataReturn.status.replace(/\n/g, '<br>')}<br><br>資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html</p></body></html>`)
+    res.send(`<html><head><title>Website Name</title><meta property="og:type" content="website"><meta property="og:url" content=""><meta property="og:title" content="${dataReturn.cityName} ${header_YMD.item(0).textContent.replace(/\n/g, '').replace(/            /g, ' ')}"><meta property="og:description" content="${dataReturn.status}\n\n資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html"></head><body><h1>${dataReturn.cityName} ${header_YMD.item(0).textContent}</h1><p>${dataReturn.status.replace(/\n/g, '<br>')}<br><br>資料來源: https://www.dgpa.gov.tw/typh/daily/nds.html</p></body></html>`)
 })
 
 app.listen(3000, () => {
